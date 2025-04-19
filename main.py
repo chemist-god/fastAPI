@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from typing import Union
+from fastapi.params import Body
 
 app = FastAPI()
  
@@ -20,5 +21,6 @@ def get_post():
 
 # POST REQUEST
 @app.post("/createpost")
-def createpost():
+def createpost(payload: dict =Body(...)):
+    print(payload)
     return {"message": "post successfully created"}
