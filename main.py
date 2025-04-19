@@ -3,7 +3,7 @@ from typing import Union
 
 app = FastAPI()
  
- 
+
 @app.get("/")
 async def root():
     return {"message": "Hello to my FastAPI"}
@@ -16,3 +16,9 @@ async def root():
 @app.get("/post")
 def get_post():
     return {"data": "This is your post"}
+
+
+# POST REQUEST
+@app.post("/createpost")
+def createpost():
+    return {"message": "post successfully created"}
