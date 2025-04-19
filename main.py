@@ -7,6 +7,6 @@ app = FastAPI()
 async def root():
     return {"message": "Hello FastAPI"}
 
-    @app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
+@app.get("/items/{item_id}")
+async def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
