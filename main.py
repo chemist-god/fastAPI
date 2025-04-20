@@ -1,9 +1,16 @@
 from fastapi import FastAPI
 from typing import Union
 from fastapi.params import Body
+from pydantic import BaseModel
 
 app = FastAPI()
  
+# Pydantic model for request body validation
+class Post(BaseModel):
+    title: str
+    content: str
+    published: bool = True
+    rating: float = None
 
 @app.get("/")
 async def root():
@@ -21,6 +28,6 @@ def get_post():
 
 # POST REQUEST
 @app.post("/createpost")
-def createpost(payload: dict =Body(...)):
-    print(payload)
-    return {"new_post":  f"title {payload['title']} content {payload['content']}"}
+def createpost(new_post: Post):
+    print(new_post)
+    return {"data": "new_post"}
