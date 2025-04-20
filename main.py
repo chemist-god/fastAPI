@@ -28,6 +28,6 @@ def get_post():
 
 # POST REQUEST
 @app.post("/createpost")
-def createpost(new_post: Post):
-    print(new_post)
+def createpost(post: Post):
+    print(post.dict())
     return {"data": "new_post"}
