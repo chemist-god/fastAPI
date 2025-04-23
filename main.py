@@ -18,12 +18,17 @@ my_posts = [
     {"title": "favorite food", "content": "I love Burger", "id": 2}
 ]
 
+def find_post(id):
+    for p in my_posts:
+        if p["id"] == id:
+            return p
+
 @app.get("/")
 async def root():
     return {"message": "Hello to my FastAPI"}
 
 @app.get("/posts")
-def get_post():
+def get_posts():
     return {"data": my_posts}
 
 # POST REQUEST
@@ -32,14 +37,11 @@ def create_post(post: Post):
     post_dict = post.dict()
     post_dict['id'] = randrange(0, 1000000)
     my_posts.append(post_dict)
-    return {"data": "post_dict"}
+    return {"data": post_dict}
 
 @app.get("/posts/{id}")
-@app.get("/posts/{post_id}")
-def get_post(post_id: int):
-    for post in my_posts:
-        if post["id"] == post_id:
-            return {"post_detail": post}
+def get_post(id: int):
+    post = find_post(id)
+    if post:
+        return {"post_detail": post}
     return {"message": "post not found"}
-    
-
