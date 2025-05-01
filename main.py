@@ -45,3 +45,9 @@ def get_post(id: int):
     if post:
         return {"post_detail": post}
     return {"message": "post not found"}
+
+    @app.get("/posts/latest")
+def get_latest_post():
+    post = my_posts[len(my_posts) - 1]
+    return {"data": post}
+    
