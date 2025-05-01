@@ -46,7 +46,7 @@ def get_post(id: int):
         return {"post_detail": post}
     return {"message": "post not found"}
 
-
+# this is not going to work because we are not using the post id in the url
 @app.get("/posts/latest")
 def get_latest_post():
     if not my_posts:
